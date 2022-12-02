@@ -20,16 +20,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+      
+
         return view('home');
     }
 
     public function imeiCheck()
     {
         return view('imei');
-        
+
     }
 
-    public function imeiSubmit() 
+    public function imeiSubmit()
     {
 
 
@@ -54,7 +56,7 @@ class HomeController extends Controller
      if ($balance == '{"balance":"0.00"}') {
         return redirect()->back()->with('error', 'balance 0.00!');
      }
-     
+
      if($service != 'demo') {
       $service = preg_replace("/[^0-9]+/", "", $service);
      }
@@ -71,9 +73,9 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'IMEI or SN is Wrong!');
         }
     }
-     
+
      $url = 'https://alpha.imeicheck.com/api/php-api/create?format='.$format.'&key='.$apiKey.'&service='.$service.'&imei='.$imei;
-  
+
      $ch = curl_init();
      curl_setopt($ch, CURLOPT_URL, $url);
      curl_setopt($ch, CURLOPT_POST, 0);
@@ -84,7 +86,7 @@ class HomeController extends Controller
 
      $response = curl_exec ($ch);
      curl_close ($ch);
-     
+
      return redirect()->back()->with('success', 'success');
         // $format = "html"; // Display result in JSON or HTML format
         // $imei = $_POST['imei']; // IMEI or SERIAL Number
@@ -101,7 +103,7 @@ class HomeController extends Controller
         // {
         //     return redirect()->back()->with('error', 'API KEY is Wrong! Please set APi KEY!');
         // }
-        
+
         // if(strlen($service) > 4 || $service > 250)
         // {
         //     return redirect()->back()->with('error', 'Service ID is Wrong!');
