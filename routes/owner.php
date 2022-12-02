@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Dashboard\Owner\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Owner\Auth\RegisterController;
-
+use App\Http\Controllers\Dashboard\Admin\OrderController;
 use App\Http\Controllers\Dashboard\Owner\WelcomeController;
 use App\Http\Controllers\Dashboard\Owner\StaticController;
 use App\Http\Controllers\Dashboard\Owner\BannerController;
@@ -25,8 +25,11 @@ Route::get('dashboard/owner/logout', [AuthController::class,'owner_logout'])->na
 Route::prefix('dashboard/owner')->name('dashboard.owner.')->middleware('auth:owner')->group(function () {
 
         Route::get('/', [WelcomeController::class,'index'])->name('welcome');
+        Route::get('notifications', [WelcomeController::class,'notifications'])->name('notifications');
 
         Route::post('/create_new_order', [WelcomeController::class,'create_new_order'])->name('create.new.order');
+
+        Route::get('/order/{order}/show', [OrderController::class,'show']);
 
         Route::get('calendar', [StaticController::class,'calendar'])->name('calendar');
 
@@ -37,7 +40,7 @@ Route::prefix('dashboard/owner')->name('dashboard.owner.')->middleware('auth:own
         Route::resource('packages', PackageController::class)->except('show');
 
         Route::resource('services', ServiceController::class)->except('show');
-        
+
         Route::resource('payment_clients', PaymentClientController::class)->except('show');
 
 });//group(function

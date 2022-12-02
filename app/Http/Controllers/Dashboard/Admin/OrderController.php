@@ -57,7 +57,7 @@ class OrderController extends Controller
 
     public function create()
     {
-        
+
     }
 
     /**
@@ -68,7 +68,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -79,7 +79,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        dd("$order");
     }
 
     /**
@@ -96,7 +96,7 @@ class OrderController extends Controller
 
     }//end of edit
 
-    
+
     public function update(Request $request, Order $order)
     {
         $request->validate([
@@ -106,7 +106,7 @@ class OrderController extends Controller
         if ($request->order_statuses_id == '1') {
 
             $this->Send($request, $order);
-            
+
         }//end of if
 
         $order->update(['order_statuses_id' => $request->order_statuses_id]);

@@ -10,7 +10,24 @@
         <li class="breadcrumb-item"><a href="{{ route('dashboard.admin.home') }}">@lang('site.home')</a></li>
         <li class="breadcrumb-item">@lang('admins.admins')</li>
     </ul>
+    <!-- @if(auth()->user()->is_admin) -->
+        @forelse($notifications as $notification)
+            <div class="alert alert-success" role="alert">
+                [{{ $notification->created_at }}] User {{ $notification->data['name'] }} ({{ $notification->data['email'] }}) has just registered.
+                <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
+                    Mark as read
+                </a>
+            </div>
 
+            @if($loop->last)
+                <a href="#" id="mark-all">
+                    Mark all as read
+                </a>
+            @endif
+        @empty
+            There are no new notifications
+        @endforelse
+    <!-- @endif -->
     <div class="row">
 
         <div class="col-md-12">

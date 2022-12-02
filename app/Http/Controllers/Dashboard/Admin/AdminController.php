@@ -28,6 +28,7 @@ class AdminController extends Controller
         $admins = Admin::all();
         $roles  = Role::whereNotIn('name', ['super_admin', 'admin', 'user'])->get();
 
+
         return view('dashboard.admin.admins.index', compact('admins','roles'));
 
     }//end of index

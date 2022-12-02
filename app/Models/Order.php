@@ -72,7 +72,7 @@ class Order extends Model
     public function banner()
     {
         return $this->belongsTo(Banner::class);
-        
+
     }//end of belongsTo owner
 
     public function payment_order()
@@ -85,30 +85,30 @@ class Order extends Model
     {
         return $this->belongsTo(OrderStatus::class,'order_statuses_id');
 
-    }//end of 
+    }//end of
 
     public function package()
     {
         return $this->belongsTo(Package::class,'packages_id');
-        
+
     }//end of belongsTo package
 
     public function booking()
     {
         return $this->belongsTo(Booking::class,'bookings_id');
-        
+
     }//end of belongsTo booking
 
     public function owner()
     {
-        return $this->belongsTo(OWner::class,'owners_id');
-        
+        return $this->belongsTo(Owner::class,'owners_id');
+
     }//end of belongsTo owner
 
     public function user()
     {
         return $this->belongsTo(User::class);
-        
+
     }//end of belongsTo user
 
     public function OrderItem()

@@ -20,6 +20,7 @@ use App\Http\Controllers\Dashboard\Admin\OrderStatusController;
 use App\Http\Controllers\Dashboard\Admin\SupportController;
 
 
+
 Route::get('dashboard/admin/login', [AuthController::class,'index'])->name('dashboard.admin.login');
 Route::post('/dashboard/admin/store', [AuthController::class,'store'])->name('dashboard.admin.login.store');
 Route::post('dashboard/admin/logout', [AuthController::class,'admin_logout'])->name('dashboard.admin.logout');

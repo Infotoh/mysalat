@@ -31,7 +31,7 @@
                         <div class="col-8 col-md-4">
                             <input type="text" class="form-control form-control-sm" name="min" id="min" placeholder="@lang('dashboard.search')">
                         </div>
-                        <a href="{{ route('dashboard.owner.packages.create') }}" class="btn btn-primary">@lang('dashboard.add')</a>                        
+                        <a href="{{ route('dashboard.owner.packages.create') }}" class="btn btn-primary">@lang('dashboard.add')</a>
                     </div>
                 </div>{{-- table-form --}}
             </div>{{-- widget-content --}}
@@ -39,7 +39,7 @@
     </div>{{-- row --}}
 
     <div class="row" id="cancel-row">
-    
+
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="table-responsive">
@@ -72,7 +72,7 @@
                                         <form method="post" action="{{ route('dashboard.owner.packages.destroy', $package->id) }}" style="display: inline-block;">
                                             @csrf
                                             @method('delete')
-                                            
+
                                             <button type="submit" class="delete">
                                                 <svg type="submit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger">
                                                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -83,7 +83,7 @@
                                         </form><!-- end of form -->
                                     </td>
     	                        </tr>
-                        		
+
                         	@endforeach
                         </tbody>
                     </table>

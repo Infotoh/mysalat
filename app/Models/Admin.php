@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    use LaratrustUserTrait;
-    use HasFactory;
+    use LaratrustUserTrait,  HasFactory, Notifiable;
 
     protected $guard    = 'admin';
 
     protected $fillable = ['name','email','password','phone'];
 
     protected $hidden   = ['password','remember_token'];
-    
+
     protected $casts    = ['email_verified_at' => 'datetime'];
 
     protected $appends  = ['image_path'];
@@ -31,7 +31,7 @@ class Admin extends Authenticatable
 
 
     //scopes -------------------------------------
-    public function scopeWhenSearch($query , $search) 
+    public function scopeWhenSearch($query , $search)
     {
         return $query->when($search, function ($q) use ($search) {
 
@@ -39,7 +39,7 @@ class Admin extends Authenticatable
             ->orWhere('email', 'like', "%$search%")
             ->orWhere('phone', 'like', "%$search%");
         });
-        
+
     }//end o fscopeWhenSearch`
 
     //relations ----------------------------------

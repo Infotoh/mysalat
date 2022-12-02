@@ -17,7 +17,7 @@
                                     <p class="label label-success">@lang('admin.completed')</p>
                                     <p class="label label-danger">@lang('admin.cancel')</p>
                                 </div>
-                            </div>                                                
+                            </div>
                             <div class="col-md-4 col-12">
                                 <form action="javascript:void(0);" class="form-horizontal mt-md-0 mt-3 text-md-right text-center">
                                     <button id="myBtn" class="btn btn-primary">
@@ -42,7 +42,7 @@
         <div id="addEventsModal" class="modal animated fadeIn">
 
             <div class="modal-dialog modal-dialog-centered">
-                
+
                 <!-- Modal content -->
                 <div class="modal-content">
 
@@ -52,7 +52,7 @@
 
                         <div class="add-edit-event-box">
                             <div class="add-edit-event-content">
-                                <h5 class="add-event-title modal-title">@lang('statics.create_order')</h5>
+                                <h5 class="add-event-title modal-title">@lang('statics.show_order')</h5>
                                 <h5 class="edit-event-title modal-title">Edit Events</h5>
 
                                 <form action="{{ route('dashboard.owner.create.new.order') }}" method="post">
@@ -110,7 +110,7 @@
                                                 <select name="packages_id" class="selectpicker form-control">
                                                     <option value="">@lang('owner.no_categorey')</option>
                                                     @foreach ($packages as $package)
-                                                        
+
                                                         <option value="{{ $package->id }}">
                                                             {{ $package->name }} : @lang('dashboard.price') : {{ $package->price }}
                                                         </option>
@@ -126,7 +126,7 @@
                                                 <select name="event_sort" class="selectpicker form-control">
                                                     <option value="">@lang('owner.no_categorey')</option>
                                                     @foreach ($bookings as $booking)
-                                                        
+
                                                         <option value="{{ $booking->name }}">
                                                             {{ $booking->name }}
                                                         </option>
@@ -144,7 +144,7 @@
                                                     <select name="service_id[]" class="selectpicker form-control">
                                                         <option value="">@lang('owner.no_categorey')</option>
                                                         @foreach ($category->service as $data)
-                                                            
+
                                                             <option value="{{ $data->id }}">
                                                                 {{ $data->name }} : @lang('dashboard.price') : {{ $data->price }}
                                                             </option>
@@ -163,7 +163,7 @@
                                             </div>
 
                                         @endforeach
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -246,7 +246,7 @@
     var editEvent = document.getElementById("edit-event");
     // Get the Discard Modal button
     var discardModal = document.querySelectorAll("[data-dismiss='modal']")[0];
-    
+
     // Get the Add Event button
     var addEventTitle = document.getElementsByClassName("add-event-title")[0];
     // Get the Edit Event button
@@ -380,7 +380,7 @@
                     description: '{{ $order->note }}'
                 },
             @endforeach
-            
+
 
         ],
         editable: true,
@@ -427,7 +427,7 @@
 
             var taskInputEndDate = $("#end-date");
             var taskInputEndtDateValue = taskInputEndDate.val(info.end.format("YYYY-MM-DD HH:mm:ss"));
-        
+
             var startDate = flatpickr(document.getElementById('start-date'), {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
@@ -470,7 +470,7 @@
             });
         }
     })
-    
+
 
     function enableDatePicker() {
         var startDate = flatpickr(document.getElementById('start-date'), {
@@ -502,7 +502,7 @@
         return result;
     }
     $("#add-e").off('click').on('click', function(event) {
-        
+
 
 
         var radioValue = $("input[name='marker']:checked").val();
@@ -563,13 +563,13 @@
     const mailScroll = new PerfectScrollbar('.fc-scroller', {
         suppressScrollX : true
     });
-    
+
     var fcButtons = document.getElementsByClassName('fc-button');
     for(var i = 0; i < fcButtons.length; i++) {
         fcButtons[i].addEventListener('click', function() {
             const mailScroll = new PerfectScrollbar('.fc-scroller', {
                 suppressScrollX : true
-            });        
+            });
             $('.fc-scroller').animate({ scrollTop: 0 }, 100);
             setCurrentDateHighlightStyle();
         })
