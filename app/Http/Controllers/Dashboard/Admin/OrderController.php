@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\OrderStatus;
 use App\Models\Order;
+use App\Models\Package;
 use App\Models\Categorey;
 use Illuminate\Http\Request;
 use App\Traits\TraitFirebase;
@@ -79,7 +80,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        dd("$order");
+          $orderStatus = OrderStatus::all();
+          $packages = Package::all();
+        return view('dashboard_owner.orders.show', compact('order', 'orderStatus' , 'packages'));
     }
 
     /**
