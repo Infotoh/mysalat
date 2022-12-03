@@ -34,8 +34,8 @@
             <div class="row">
               <div class="add-edit-event-box">
                   <div class="add-edit-event-content">
-                      <h5 class="add-event-title modal-title">@lang('statics.show_order')</h5>
-                      <h5 class="edit-event-title modal-title">Edit Events</h5>
+                      <!-- <h5 class="add-event-title modal-title">@lang('statics.show_order')</h5> -->
+                      <!-- <h5 class="edit-event-title modal-title">Edit Events</h5> -->
 
                       <form action="{{ route('dashboard.owner.create.new.order') }}" method="post">
                           @csrf
@@ -46,7 +46,7 @@
                               <div class="col-md-12">
                                   <label for="start-date">@lang('owner.groom_name')</label>
                                   <div class="d-flex event-title">
-                                      <input name="groom_name" type="text" placeholder="Enter Title" class="form-control" name="task">
+                                      <input name="groom_name" type="text" placeholder="Enter Title" class="form-control" name="task" value="{{$order->groom_name}}">
                                   </div>
                               </div>
 
@@ -54,7 +54,7 @@
                                   <div class="form-group start-date">
                                       <label for="start-data">@lang('statics.event_data')</label>
                                       <div class="d-flex">
-                                          <input name="event_data" placeholder="Start Date" class="form-control" type="date">
+                                          <input name="event_data" placeholder="Start Date" class="form-control" type="date" value="{{$order->event_data}}">
                                       </div>
                                   </div>
                               </div>
@@ -63,7 +63,7 @@
                                   <div class="form-group start-date">
                                       <label for="start-date">@lang('statics.event_time')</label>
                                       <div class="d-flex">
-                                          <input name="event_time" placeholder="Start Date" class="form-control" type="time">
+                                          <input name="event_time" placeholder="Start Date" class="form-control" type="time" value="{{$order->event_time}}">
                                       </div>
                                   </div>
                               </div>
@@ -72,8 +72,8 @@
                                   <div class="form-group start-date">
                                       <label for="start-date">@lang('statics.primary_key_type')</label>
                                       <div class="d-flex">
-                                          <input name="primary_key_type" placeholder="Start Date" class="form-control" type="text">
                                       </div>
+                                      <input name="primary_key_type" placeholder="Start Date" class="form-control" type="text" value="{{$order->primary_key_type}}">
                                   </div>
                               </div>
 
@@ -81,7 +81,7 @@
                                   <div class="form-group start-date">
                                       <label for="start-date">@lang('statics.primary_key_number')</label>
                                       <div class="d-flex">
-                                          <input name="primary_key_number" placeholder="Start Date" class="form-control" type="text">
+                                          <input name="primary_key_number" placeholder="Start Date" class="form-control" type="text" value="{{$order->primary_key_number}}">
                                       </div>
                                   </div>
                               </div>
@@ -93,10 +93,11 @@
                                           <option value="">@lang('owner.no_categorey')</option>
                                           @foreach ($packages as $package)
 
-                                              <option value="{{ $package->id }}">
-                                                  {{ $package->name }} : @lang('dashboard.price') : {{ $package->price }}
-                                              </option>
-
+                                          <option value="{{ $package->id }}" {{ $package->id == old('', $order->banner->categoreys_id) ? 'selected' : ' ' }}>
+                                            {{ $package->name }}
+                                          </option>
+                                                  {{-- {{ $package->name }} : @lang('dashboard.price') : {{ $package->price }}
+                                              </option> --}}
                                           @endforeach
                                       </select>
                                   </div>
@@ -107,13 +108,15 @@
                                       <label>@lang('admin.bookings')</label>
                                       <select name="event_sort" class="selectpicker form-control">
                                           <option value="">@lang('owner.no_categorey')</option>
-                                          {{-- @foreach ($bookings as $booking)
+                                          @foreach ($bookings as $booking)
 
-                                              <option value="{{ $booking->name }}">
-                                                  {{ $booking->name }}
-                                              </option>
+                                            <option value="{{ $booking->id }}" {{ $booking->id == old('', $order->banner->categoreys_id) ? 'selected' : ' ' }}>
+                                              {{ $booking->name }}
+                                            </option>
 
-                                          @endforeach --}}
+
+
+                                          @endforeach
                                       </select>
                                   </div>
                               </div>
@@ -127,7 +130,9 @@
                                               <option value="">@lang('owner.no_categorey')</option>
                                               @foreach ($category->service as $data)
 
-                                                  <option value="{{ $data->id }}">
+                                                  <!-- <option value="{{ $data->id }}"> -->
+                                                    <option value="{{ $data->id }}" {{ $data->id == old('', $order->data_id) ? 'selected' : ' ' }}>@lang('orders.'. $data->id)</option>
+
                                                       {{ $data->name }} : @lang('dashboard.price') : {{ $data->price }}
                                                   </option>
 

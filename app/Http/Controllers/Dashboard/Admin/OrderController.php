@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OrderStatus;
 use App\Models\Order;
 use App\Models\Package;
+use App\Models\Booking;
 use App\Models\Categorey;
 use Illuminate\Http\Request;
 use App\Traits\TraitFirebase;
@@ -82,7 +83,10 @@ class OrderController extends Controller
     {
           $orderStatus = OrderStatus::all();
           $packages = Package::all();
-        return view('dashboard_owner.orders.show', compact('order', 'orderStatus' , 'packages'));
+          $bookings = Booking::all();
+          $categoreys = Categorey::all();
+ // dd($bookings);
+        return view('dashboard_owner.orders.show', compact('order', 'orderStatus' , 'packages','bookings','categoreys'));
     }
 
     /**
